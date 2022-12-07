@@ -11,6 +11,7 @@ export class ShowUsersComponent implements OnInit {
 
   users: User[] = [];
   selectedUser: User | undefined;
+  realEmail: string | undefined;
 
   constructor(private showUsersService: ShowUsersService) { }
 

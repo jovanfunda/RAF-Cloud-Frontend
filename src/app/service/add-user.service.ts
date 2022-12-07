@@ -22,7 +22,7 @@ export class AddUserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  addUser(name: String, lastname: String, email: String, permissions: String[]): Observable<String> {
+  addUser(name: string, lastname: string, email: string, permissions: string[]): Observable<string> {
     this.user = {
       email: email,
       password: "1",

@@ -12,7 +12,7 @@ export class AddUserComponent implements OnInit {
   lastname = "";
   email = "";
   permissions_s = "";
-  permissions: String[] = []
+  permissions: string[] = []
 
   htmlToAdd = "";
 

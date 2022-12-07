@@ -1,9 +1,22 @@
 <div *ngIf="user">
-
-    <div><span>id: </span>{{user.email}}</div>
-    <div>
-      <label for="user-name">User name: </label>
-      <input id="user-name" [(ngModel)]="user.name" placeholder="name">
+    <div style="padding:10px;">
+      <label>Name: </label>
+      <input [(ngModel)]="tempUser.name" [value]="user.name">
+      <br>
     </div>
-  
+    <div style="padding:10px;">
+      <label>Lastname: </label>
+      <input [(ngModel)]="tempUser.lastname" [value]="user.lastname">
+      <br>
+    </div>
+    <div style="padding:10px;">
+      <label>Permissions: </label>
+      <input [(ngModel)]="permissions_s" [value]="user.permissions">
+      <br>
+    </div>
+    <div style="padding:10px;">
+      <label>Password: </label>
+      <input type="password" [(ngModel)]="password">
+    </div>
+    <button (click)="updateUser()">Update user</button>
 </div>
