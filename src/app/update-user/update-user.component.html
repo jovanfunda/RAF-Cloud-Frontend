@@ -1,0 +1,9 @@
+<div *ngIf="user">
+
+    <div><span>id: </span>{{user.email}}</div>
+    <div>
+      <label for="user-name">User name: </label>
+      <input id="user-name" [(ngModel)]="user.name" placeholder="name">
+    </div>
+  
+</div>

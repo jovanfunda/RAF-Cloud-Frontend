@@ -1,0 +1,15 @@
+<label>Name: </label>
+<input type="text" [(ngModel)]="name"><br><br>
+
+<label>Lastname: </label>
+<input type="text" [(ngModel)]="lastname"><br><br>
+
+<label>Email: </label>
+<input type="text" [(ngModel)]="email"><br><br>
+
+<label>Permissions: </label>
+<input type="text" [(ngModel)]="permissions_s"><br><br>
+
+<button type="button" (click)="addUser()">Add user</button>
+
+<div [innerHtml]="htmlToAdd"></div>

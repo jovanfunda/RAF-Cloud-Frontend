@@ -1,0 +1,10 @@
+<div>
+    <div *ngFor="let user of users">
+        <br>
+        <button (click)="this.userSelected(user)">Update user</button>
+        <p style="display:inline;margin:20px;">{{user.name}} - {{user.lastname}} - {{user.email}} - {{user.permissions}}</p>
+        <br>
+    </div>
+</div>
+
+<app-update-user [user]="selectedUser"></app-update-user>
