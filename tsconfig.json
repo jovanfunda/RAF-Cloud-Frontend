@@ -5,7 +5,6 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -18,9 +17,13 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
+    "noImplicitUseStrict": true,
     "lib": [
       "es2020",
-      "dom"
+      "dom",
+      "es5", 
+      "es6",
+      "dom.iterable"
     ]
   },
   "angularCompilerOptions": {

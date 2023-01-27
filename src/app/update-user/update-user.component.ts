@@ -20,8 +20,7 @@ export class UpdateUserComponent implements OnInit {
     name: undefined,
     lastname: undefined,
     password: undefined,
-    permissions: undefined,
-    JWT: undefined
+    permissions: undefined
   }
 
   constructor(private updateUserService: UpdateUserService) {
@@ -31,12 +30,11 @@ export class UpdateUserComponent implements OnInit {
   
   }
 
-  updateUser() {
+  updateUser(){
     if(this.permissions_s.length != 0) 
       this.permissions = this.permissions_s.split(",");
     this.tempUser.permissions = this.permissions;
-    console.log("Permisije ", this.tempUser.permissions);
-    this.updateUserService.updateUser(this.user!.email!, this.tempUser!, this.password).subscribe(() => {
-    })
+    console.log("ts", this.tempUser.name, this.tempUser.lastname, this.tempUser.permissions)
+    this.updateUserService.updateUser(this.user!.email!, this.tempUser!, this.password).subscribe()
   }
 }

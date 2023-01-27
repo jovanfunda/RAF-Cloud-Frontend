@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,8 +16,7 @@ export class AddUserService {
     password: undefined,
     name: undefined,
     lastname: undefined,
-    permissions: undefined,
-    JWT: undefined
+    permissions: undefined
   }
 
   constructor(private httpClient: HttpClient) { }
@@ -28,10 +27,10 @@ export class AddUserService {
       password: "1",
       name: name,
       lastname: lastname,
-      permissions: permissions,
-      JWT: ""
+      permissions: permissions
     }
     
-    return this.httpClient.post(`${this.apiUrl}/registerUser`, this.user, {responseType : 'text'})
+    let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
+    return this.httpClient.post(`${this.apiUrl}/registerUser`, this.user, {responseType : 'text', headers : headers})
   }
 }

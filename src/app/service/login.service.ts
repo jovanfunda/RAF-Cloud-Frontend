@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  checkPassword(_email: string, _password: string): Observable<string> {
-    return this.httpClient.post(`${this.apiUrl}/checkPassword`, {email: _email, password: _password}, {responseType : 'text'});
+  login(_email: string, _password: string): Observable<string> {
+    return this.httpClient.post(`${this.apiUrl}/login`, {email: _email, password: _password}, {responseType : 'text'});
   }
 }

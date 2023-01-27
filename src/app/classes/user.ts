@@ -4,5 +4,4 @@ export class User {
 	name: string | undefined;
 	lastname: string | undefined;
 	permissions: string[] | undefined;
-	JWT: string | undefined;
 }

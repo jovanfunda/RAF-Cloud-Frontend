@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../service/home.service';
+import { PermissionService } from '../service/permission.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { HomeService } from '../service/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService) { }
+  constructor(private permissionService: PermissionService) { }
 
   ngOnInit(): void {
     this.checkAllPermissions()
@@ -17,17 +17,19 @@ export class HomeComponent implements OnInit {
   checkAllPermissions(): void {
     this.checkJWToken("CAN_CREATE_USERS");
     this.checkJWToken("CAN_READ_USERS");
-    this.checkJWToken("CAN_UPDATE_USERS");
-    this.checkJWToken("CAN_DELETE_USERS");
   }
 
   checkJWToken(permission: string): void {
-    this.homeService.checkJWToken(permission).subscribe((hasPermission) => {
+    this.permissionService.checkPermission(permission).subscribe((hasPermission) => {
       if(hasPermission) {
         document.getElementById(permission)!.hidden = false
       } else {
         document.getElementById(permission)!.hidden = true
       }
     })
+  }
+
+  clearJWT(): void {
+    localStorage.removeItem("JWToken");
   }
 }

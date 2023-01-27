@@ -6,14 +6,8 @@
         <li id="CAN_READ_USERS" [hidden]="true">
             <a [routerLink]="'/showUsers'">Read users</a>
         </li>
-        <li id="CAN_UPDATE_USERS" [hidden]="true">
-            <a [routerLink]="'/updateUsers'">Update users /TO DO</a>
-        </li>
-        <li id="CAN_DELETE_USERS" [hidden]="true">
-            <a [routerLink]="'/deleteUsers'">Delete users /TO DO</a>
-        </li>
         <li>
-            <a [routerLink]="'/login'">Log out</a>
+            <a (click)="clearJWT()" [routerLink]="'/login'">Log out</a>
         </li>
     </ul>
 </div>

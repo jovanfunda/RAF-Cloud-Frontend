@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../classes/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,11 +13,12 @@ export class ShowUsersService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers(): Observable<any> {
-    return this.httpClient.post(`${this.apiUrl}/users`, localStorage.getItem("JWToken"));
+    let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
+    return this.httpClient.post(`${this.apiUrl}/users`, localStorage.getItem("JWToken"), {headers: headers});
   }
 
   deleteUser(user: string): Observable<any> {
-    return this.httpClient.post(`${this.apiUrl}/deleteUser`, user);
+    let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
+    return this.httpClient.post(`${this.apiUrl}/deleteUser`, user, {headers: headers});
   }
-
 }

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    this.loginService.checkPassword(this.email, this.password).subscribe((successfulLogin) => {
+    this.loginService.login(this.email, this.password).subscribe((successfulLogin) => {
       if (successfulLogin) {
         this._router.navigateByUrl("/home");
         localStorage.setItem("JWToken", "Bearer " + successfulLogin)
