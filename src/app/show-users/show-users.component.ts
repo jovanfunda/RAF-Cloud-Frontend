@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { User } from '../classes/user';
 import { PermissionService } from '../service/permission.service';
 import { ShowUsersService } from '../service/show-users.service';
@@ -8,7 +8,7 @@ import { ShowUsersService } from '../service/show-users.service';
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.css']
 })
-export class ShowUsersComponent implements OnInit {
+export class ShowUsersComponent implements AfterViewInit {
 
   users: User[] = [];
   selectedUser: User | undefined;
@@ -16,7 +16,7 @@ export class ShowUsersComponent implements OnInit {
 
   constructor(private showUsersService: ShowUsersService, private permissionService: PermissionService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getUsers();
     this.checkPermission("CAN_UPDATE_USERS");
     this.checkPermission("CAN_DELETE_USERS");
@@ -25,8 +25,9 @@ export class ShowUsersComponent implements OnInit {
   getUsers(): void {
     this.showUsersService.getUsers().subscribe((users) => {
       this.users = users;
-    });
+    })
   }
+
 
   userSelected(user: User): void {
     this.selectedUser = user;
@@ -40,12 +41,7 @@ export class ShowUsersComponent implements OnInit {
 
   checkPermission(permission: string): void {
     this.permissionService.checkPermission(permission).subscribe((hasPermission) => {
-      if(document.readyState === "complete") {
         this.hideAndShowButtons(hasPermission, permission);
-      } else {
-        setTimeout(() => {}, 100);
-        this.hideAndShowButtons(hasPermission, permission);
-      }
     })
   }
 
@@ -53,11 +49,6 @@ export class ShowUsersComponent implements OnInit {
     if(hasPermission) {
       for(let item of document.getElementsByName(permission)) {
         (item! as HTMLButtonElement).hidden = false;
-        console.log("{}", item!);
-      }
-    } else {
-      for(let item of document.getElementsByName(permission)) {
-        (item! as HTMLButtonElement).hidden = true;
       }
     }
   }

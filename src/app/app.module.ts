@@ -10,6 +10,7 @@ import { ShowUsersComponent } from './show-users/show-users.component';
 import { HomeComponent } from './home/home.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ErrorHandlerService } from './service/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

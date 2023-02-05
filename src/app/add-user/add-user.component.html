@@ -7,8 +7,22 @@
 <label>Email: </label>
 <input type="text" [(ngModel)]="email"><br><br>
 
-<label>Permissions: </label>
-<input type="text" [(ngModel)]="permissions_s"><br><br>
+<form>
+    <div>
+      <label>Select permissions:</label>
+      <br>
+      <select multiple [(ngModel)]="permissions" name="values">
+        <option *ngFor="let value of values" [value]="value">{{value}}</option>
+      </select>
+    </div>
+    <br>
+    <div>
+        Selected:
+        <ul>
+          <li *ngFor="let permission of permissions">{{permission}}</li>
+        </ul>
+    </div>
+</form>
 
 <button type="button" (click)="addUser()">Add user</button>
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ErrorHandler, Injectable } from '@angular/core';
+import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,15 +10,15 @@ export class ShowUsersService {
 
   private readonly apiUrl = environment.postApi;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private errorHandler: ErrorHandler) { }
 
   getUsers(): Observable<any> {
     let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
-    return this.httpClient.post(`${this.apiUrl}/users`, localStorage.getItem("JWToken"), {headers: headers});
+    return this.httpClient.get(`${this.apiUrl}/users`, {headers: headers}).pipe(catchError(async (error) => this.errorHandler.handleError(error)))
   }
 
   deleteUser(user: string): Observable<any> {
     let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
-    return this.httpClient.post(`${this.apiUrl}/deleteUser`, user, {headers: headers});
+    return this.httpClient.post(`${this.apiUrl}/deleteUser`, user, {headers: headers}).pipe(catchError(async (error) => this.errorHandler.handleError(error)));
   }
 }

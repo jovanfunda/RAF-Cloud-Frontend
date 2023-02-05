@@ -11,10 +11,11 @@ export class AddUserComponent implements OnInit {
   name = "";
   lastname = "";
   email = "";
-  permissions_s = "";
   permissions: string[] = []
 
   htmlToAdd = "";
+
+  values = ['CAN_CREATE_USERS', 'CAN_READ_USERS', 'CAN_UPDATE_USERS', 'CAN_DELETE_USERS', 'CAN_SEARCH_MACHINES', 'CAN_START_MACHINES', 'CAN_STOP_MACHINES', 'CAN_RESTART_MACHINES', 'CAN_CREATE_MACHINES', 'CAN_DESTROY_MACHINES'];
 
   constructor(private addUserService: AddUserService) { }
 
@@ -30,9 +31,6 @@ export class AddUserComponent implements OnInit {
       this.htmlToAdd = '<p>Invalidate email address</p>';
       return;
     }
-
-    if(this.permissions_s.length != 0) 
-      this.permissions = this.permissions_s.split(",");
     
     this.addUserService.addUser(this.name, this.lastname, this.email, this.permissions).subscribe((successfullyAdded) => {
       if (successfullyAdded == null) {

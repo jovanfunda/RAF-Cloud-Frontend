@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, AfterContentChecked, DoCheck } from '@angular/core';
 import { User } from '../classes/user';
 import { UpdateUserService } from '../service/update-user.service';
 
@@ -8,12 +8,12 @@ import { UpdateUserService } from '../service/update-user.service';
   styleUrls: ['./update-user.component.css']
 })
 
-export class UpdateUserComponent implements OnInit {
+export class UpdateUserComponent implements OnChanges {
 
   permissions_s = "";
   permissions: string[] = []
 
-  @Input() user?: User;
+  @Input() user: User;
   password: string = "";
   tempUser: User = {
     email: undefined,
@@ -26,15 +26,17 @@ export class UpdateUserComponent implements OnInit {
   constructor(private updateUserService: UpdateUserService) {
   }
 
-  ngOnInit(): void {
-  
+  ngOnChanges() {
+    if(this.user != undefined) {
+      this.tempUser = this.user;
+      this.permissions_s = this.user.permissions.join(",");
+    }
   }
 
   updateUser(){
     if(this.permissions_s.length != 0) 
       this.permissions = this.permissions_s.split(",");
     this.tempUser.permissions = this.permissions;
-    console.log("ts", this.tempUser.name, this.tempUser.lastname, this.tempUser.permissions)
     this.updateUserService.updateUser(this.user!.email!, this.tempUser!, this.password).subscribe()
   }
 }

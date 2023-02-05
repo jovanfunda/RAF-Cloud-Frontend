@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
+import { catchError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { User } from '../classes/user';
@@ -11,11 +12,10 @@ export class UpdateUserService {
 
   private readonly apiUrl = environment.postApi;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private errorHandler: ErrorHandler) { }
 
-  updateUser(realEmail: string, _user: User, _password: string): Observable<string> {
+  updateUser(realEmail: string, _user: User, _password: string): Observable<any> {
     let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
-    console.log("http", _user.name, _user.lastname, _user.permissions);
-    return this.httpClient.post(`${this.apiUrl}/updateUser`, {realEmail: realEmail, user: _user, password: _password}, {responseType : 'text', headers: headers});
+    return this.httpClient.post(`${this.apiUrl}/updateUser`, {realEmail: realEmail, user: _user, password: _password}, {responseType : 'text', headers: headers}).pipe(catchError(async (error) => this.errorHandler.handleError(error)));
   }
 }
