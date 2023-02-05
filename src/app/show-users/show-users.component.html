@@ -3,7 +3,10 @@
         <br>
         <button name="CAN_DELETE_USERS" [hidden]=true (click)="this.deleteUser(user)">Delete user</button>
         <button name="CAN_UPDATE_USERS" [hidden]=true (click)="this.userSelected(user)">Update user</button>
-        <p style="display:inline;margin:20px;">{{user.name}} - {{user.lastname}} - {{user.email}} - {{user.permissions}}</p>
+        <p style="display:inline;margin:20px;">{{user.name}} - {{user.lastname}} - {{user.email}}</p>
+        <div *ngFor="let permission of user.permissions">
+            <label>{{permission}}</label>    
+        </div>
         <br>
     </div>
 </div>

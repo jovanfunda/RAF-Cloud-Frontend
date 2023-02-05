@@ -9,11 +9,24 @@
       <input [(ngModel)]="tempUser.lastname" [value]="user.lastname">
       <br>
     </div>
-    <div style="padding:10px;">
-      <label>Permissions: </label>
-      <input [(ngModel)]="permissions_s" [value]="user.permissions">
+
+    <form>
+      <div>
+        <label>Select permissions:</label>
+        <br>
+        <select multiple [(ngModel)]="permissions" name="values">
+          <option *ngFor="let value of values" [value]="value">{{value}}</option>
+        </select>
+      </div>
       <br>
-    </div>
+      <div>
+          Selected:
+          <ul>
+            {{permissions}}
+          </ul>
+      </div>
+    </form>
+
     <div style="padding:10px;">
       <label>Password: </label>
       <input type="password" [(ngModel)]="password">

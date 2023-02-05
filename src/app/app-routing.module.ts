@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
   { path: "showUsers", component: ShowUsersComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_READ_USERS'}  },
-  // { path: "addUser", component: AddUserComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_CREATE_USERS'}  }
-  { path: "addUser", component: AddUserComponent }
+  { path: "addUser", component: AddUserComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_CREATE_USERS'}  },
+  // { path: "addUser", component: AddUserComponent }
 ];
 
 @NgModule({

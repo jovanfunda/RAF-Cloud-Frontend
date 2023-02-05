@@ -10,8 +10,9 @@ import { UpdateUserService } from '../service/update-user.service';
 
 export class UpdateUserComponent implements OnChanges {
 
-  permissions_s = "";
   permissions: string[] = []
+  values = ['CAN_CREATE_USERS', 'CAN_READ_USERS', 'CAN_UPDATE_USERS', 'CAN_DELETE_USERS', 'CAN_SEARCH_MACHINES', 'CAN_START_MACHINES', 'CAN_STOP_MACHINES', 'CAN_RESTART_MACHINES', 'CAN_CREATE_MACHINES', 'CAN_DESTROY_MACHINES'];
+
 
   @Input() user: User;
   password: string = "";
@@ -29,13 +30,11 @@ export class UpdateUserComponent implements OnChanges {
   ngOnChanges() {
     if(this.user != undefined) {
       this.tempUser = this.user;
-      this.permissions_s = this.user.permissions.join(",");
+      this.permissions = this.user.permissions;
     }
   }
 
   updateUser(){
-    if(this.permissions_s.length != 0) 
-      this.permissions = this.permissions_s.split(",");
     this.tempUser.permissions = this.permissions;
     this.updateUserService.updateUser(this.user!.email!, this.tempUser!, this.password).subscribe()
   }
