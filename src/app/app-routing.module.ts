@@ -5,12 +5,16 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ShowUsersComponent } from './show-users/show-users.component';
 import { PermissionGuard } from './guard/permission.guard';
+import { SearchMachineComponent } from './search-machine/search-machine.component';
+import { CreateMachineComponent } from './create-machine/create-machine.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
   { path: "showUsers", component: ShowUsersComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_READ_USERS'}  },
   { path: "addUser", component: AddUserComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_CREATE_USERS'}  },
+  { path: "searchMachine", component: SearchMachineComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_SEARCH_MACHINES'}  },
+  { path: "createMachine", component: CreateMachineComponent, canActivate: [PermissionGuard], data: {permission: 'CAN_CREATE_MACHINES'}  }
   // { path: "addUser", component: AddUserComponent }
 ];
 

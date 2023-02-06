@@ -6,6 +6,12 @@
         <li id="CAN_READ_USERS" [hidden]="true">
             <a [routerLink]="'/showUsers'">Read users</a>
         </li>
+        <li id="CAN_CREATE_MACHINES" [hidden]="true">
+            <a [routerLink]="'/createMachine'">Create machine</a>
+        </li>
+        <li id="CAN_SEARCH_MACHINES" [hidden]="true">
+            <a [routerLink]="'/searchMachine'">Search machines</a>
+        </li>
         <li>
             <a (click)="clearJWT()" [routerLink]="'/login'">Log out</a>
         </li>

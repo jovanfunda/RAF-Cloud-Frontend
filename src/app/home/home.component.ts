@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   checkAllPermissions(): void {
     this.checkJWToken("CAN_CREATE_USERS");
     this.checkJWToken("CAN_READ_USERS");
+    this.checkJWToken("CAN_SEARCH_MACHINES");
+    this.checkJWToken("CAN_CREATE_MACHINES");
   }
 
   checkJWToken(permission: string): void {

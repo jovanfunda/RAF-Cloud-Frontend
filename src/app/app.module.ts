@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ErrorHandlerService } from './service/error-handler.service';
+import { SearchMachineComponent } from './search-machine/search-machine.component';
+import { CreateMachineComponent } from './create-machine/create-machine.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ErrorHandlerService } from './service/error-handler.service';
     ShowUsersComponent,
     HomeComponent,
     AddUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    SearchMachineComponent,
+    CreateMachineComponent
   ],
   imports: [
     BrowserModule,
