@@ -29,7 +29,7 @@ import { CreateMachineComponent } from './create-machine/create-machine.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [ErrorHandlerService],
   bootstrap: [AppComponent]
