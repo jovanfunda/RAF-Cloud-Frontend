@@ -46,4 +46,10 @@ export class SearchMachineService {
     return this.httpClient.post(`${this.apiUrl}/restartMachine/${machineID}`, machineID,
         {headers: headers}).pipe(catchError(async (error) => this.errorHandler.handleError(error)))
   }
+
+  scheduleJob(_machineID: BigInt, _job: String, _scheduleTime: String) {
+    let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json', 'jwtoken':localStorage.getItem("JWToken")}  )
+    return this.httpClient.post(`${this.apiUrl}/scheduleJob`, {machineID: _machineID, job: _job, scheduleTime: _scheduleTime},
+        {headers: headers}).pipe(catchError(async (error) => this.errorHandler.handleError(error)))
+  }
 }

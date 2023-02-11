@@ -27,6 +27,7 @@
 <table>
     <thead>
       <tr>
+        <th>Options</th>
         <th>ID</th>
         <th>Name</th>
         <th>Status</th>
@@ -37,9 +38,9 @@
       <tr *ngFor="let machine of machines">
 
         <button *ngIf="machine.status=='STOPPED'" (click)="deleteMachine(machine.id)">Deactivate</button>
-        <button *ngIf="machine.status=='STOPPED'" (click)="startMachine(machine.id)">Start</button>
-        <button *ngIf="machine.status=='RUNNING'" (click)="stopMachine(machine.id)">Stop</button>
-        <button *ngIf="machine.status=='RUNNING'" (click)="restartMachine(machine.id)">Restart</button>
+        <button *ngIf="machine.status=='STOPPED'" (click)="scheduleJob(machine.id, 'start')">Start</button>
+        <button *ngIf="machine.status=='RUNNING'" (click)="scheduleJob(machine.id, 'stop')">Stop</button>
+        <button *ngIf="machine.status=='RUNNING'" (click)="scheduleJob(machine.id, 'restart')">Restart</button>
         <td>{{machine.id}}</td>
         <td>{{machine.name}}</td>
         <td>{{machine.status}}</td>
@@ -47,3 +48,7 @@
       </tr>
     </tbody>
 </table>
+
+<p>Schedule time format is: "11.2 15:35". It represents 11th of February at 3PM and 35 minutes</p>
+<p>Enter your wanted time and click on a job you want</p>
+<textarea [(ngModel)]="scheduleTime"></textarea>

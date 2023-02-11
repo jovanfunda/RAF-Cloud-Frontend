@@ -19,6 +19,7 @@ export class SearchMachineComponent implements AfterViewInit {
   status: String[] = [];
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
+  scheduleTime: String = "";
 
   subscription: Subscription;
 
@@ -74,6 +75,28 @@ export class SearchMachineComponent implements AfterViewInit {
     this.searchMachineService.restartMachine(machineID).subscribe(() => {
       this.htmlToAdd = "Restart machine called on machine " + machineID;
     })
+  }
+
+  scheduleJob(machineID: BigInt, job: String): void {
+    if(this.scheduleTime == "") {
+      this.callJobWithoutSchedule(machineID, job);
+      return;
+    }
+
+    this.searchMachineService.scheduleJob(machineID, job, this.scheduleTime).subscribe(() => {
+      this.htmlToAdd = "Scheduled job " + job + " on machine " + machineID +  " at " + this.scheduleTime;
+    })    
+
+  }
+
+  callJobWithoutSchedule(machineID: BigInt, job:String): void {
+    if(job == "start") {
+      this.startMachine(machineID);
+    } else if(job == "stop") {
+      this.stopMachine(machineID);
+    } else if(job == "restart") {
+      this.restartMachine(machineID);
+    }
   }
 
 }
