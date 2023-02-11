@@ -1,0 +1,49 @@
+<label>Name </label>
+<input type="text" [(ngModel)]="name"><br><br>
+
+
+<form>
+  <div>
+    <label>Status:</label>
+    <br>
+    <select multiple [(ngModel)]="status" name="values">
+      <option *ngFor="let value of values" [value]="value">{{value}}</option>
+    </select>
+  </div>
+  <br>
+</form>
+
+<label>Date from:</label>
+<input [(ngModel)]="dateFrom" type="date">
+
+<label>Date to:</label>
+<input [(ngModel)]="dateTo" type="date">
+
+<button (click)="filterMachines()">Filter machines</button>
+<button (click)="getMachines()">Reset filters</button>
+
+<div [innerHtml]="htmlToAdd"></div>
+
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Created by</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let machine of machines">
+
+        <button *ngIf="machine.status=='STOPPED'" (click)="deleteMachine(machine.id)">Deactivate</button>
+        <button *ngIf="machine.status=='STOPPED'" (click)="startMachine(machine.id)">Start</button>
+        <button *ngIf="machine.status=='RUNNING'" (click)="stopMachine(machine.id)">Stop</button>
+        <button *ngIf="machine.status=='RUNNING'" (click)="restartMachine(machine.id)">Restart</button>
+        <td>{{machine.id}}</td>
+        <td>{{machine.name}}</td>
+        <td>{{machine.status}}</td>
+        <td>{{machine.createdBy.email}}</td>
+      </tr>
+    </tbody>
+</table>
