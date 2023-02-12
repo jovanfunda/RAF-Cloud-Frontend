@@ -13,6 +13,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { ErrorHandlerService } from './service/error-handler.service';
 import { SearchMachineComponent } from './search-machine/search-machine.component';
 import { CreateMachineComponent } from './create-machine/create-machine.component';
+import { ErrorHistoryComponent } from 'src/app/error-history/error-history.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CreateMachineComponent } from './create-machine/create-machine.componen
     AddUserComponent,
     UpdateUserComponent,
     SearchMachineComponent,
-    CreateMachineComponent
+    CreateMachineComponent,
+    ErrorHistoryComponent
   ],
   imports: [
     BrowserModule,

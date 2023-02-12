@@ -36,7 +36,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let machine of machines">
-
+        
         <button *ngIf="machine.status=='STOPPED'" (click)="deleteMachine(machine.id)">Deactivate</button>
         <button *ngIf="machine.status=='STOPPED'" (click)="scheduleJob(machine.id, 'start')">Start</button>
         <button *ngIf="machine.status=='RUNNING'" (click)="scheduleJob(machine.id, 'stop')">Stop</button>
