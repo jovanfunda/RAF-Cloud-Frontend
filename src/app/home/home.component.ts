@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Permission } from '../classes/permission';
 import { PermissionService } from '../service/permission.service';
 
 @Component({
@@ -15,13 +16,13 @@ export class HomeComponent implements OnInit {
   }
 
   checkAllPermissions(): void {
-    this.checkJWToken("CAN_CREATE_USERS");
-    this.checkJWToken("CAN_READ_USERS");
-    this.checkJWToken("CAN_SEARCH_MACHINES");
-    this.checkJWToken("CAN_CREATE_MACHINES");
+    this.checkJWToken(Permission.CAN_CREATE_USERS);
+    this.checkJWToken(Permission.CAN_READ_USERS);
+    this.checkJWToken(Permission.CAN_SEARCH_MACHINES);
+    this.checkJWToken(Permission.CAN_CREATE_MACHINES);
   }
 
-  checkJWToken(permission: string): void {
+  checkJWToken(permission: Permission): void {
     this.permissionService.checkPermission(permission).subscribe((hasPermission) => {
       if(hasPermission) {
         document.getElementById(permission)!.hidden = false

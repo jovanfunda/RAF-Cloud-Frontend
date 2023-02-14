@@ -1,0 +1,20 @@
+div ul {
+  margin: 0;
+  padding: 0;
+}
+
+div ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+div ul li a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+div ul li a:hover {
+  background-color: #f2f2f2;
+}

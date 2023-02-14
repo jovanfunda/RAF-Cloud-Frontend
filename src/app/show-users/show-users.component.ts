@@ -1,4 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { Permission } from '../classes/permission';
 import { User } from '../classes/user';
 import { PermissionService } from '../service/permission.service';
 import { ShowUsersService } from '../service/show-users.service';
@@ -18,8 +19,8 @@ export class ShowUsersComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getUsers();
-    this.checkPermission("CAN_UPDATE_USERS");
-    this.checkPermission("CAN_DELETE_USERS");
+    this.checkPermission(Permission.CAN_UPDATE_USERS);
+    this.checkPermission(Permission.CAN_DELETE_USERS);
   }
 
   getUsers(): void {

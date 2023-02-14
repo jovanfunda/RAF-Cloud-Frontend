@@ -1,3 +1,41 @@
-tr, td {
-    text-align: center;
+label {
+    font-weight: bold;
+}
+  
+input, select, textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+  
+button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px;
+}
+
+tr {
+    width:auto;
+}
+  
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+  
+th {
+    background-color: #4CAF50;
+    color: white;
+    border-bottom: 10px;
 }

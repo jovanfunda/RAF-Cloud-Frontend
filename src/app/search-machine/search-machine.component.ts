@@ -1,8 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Machine } from '../classes/machine';
 import { SearchMachineService } from '../service/search-machine.service';
-import { interval, Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-search-machine',
@@ -12,7 +10,7 @@ import { interval, Subscription } from 'rxjs';
 export class SearchMachineComponent implements AfterViewInit {
 
   machines: Machine[] = [];
-  values = ['Running', 'Stopped'];
+  values = ['RUNNING', 'STOPPED'];
   htmlToAdd = "";
 
   name: String;
@@ -21,24 +19,16 @@ export class SearchMachineComponent implements AfterViewInit {
   dateTo: Date | undefined;
   scheduleTime: String = "";
 
-  subscription: Subscription;
-
-
   constructor(private searchMachineService: SearchMachineService) { }
 
   ngAfterViewInit(): void {
     this.getMachines();
-    this.subscription = interval(1000).subscribe(val => this.getMachines());
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   getMachines(): void {
-    this.searchMachineService.getMachines().subscribe((machines) => {
-      this.machines = machines;
-    })
+      this.searchMachineService.getMachines().subscribe((machines) => {
+        this.machines = machines;
+      })
   }
 
   filterMachines(): void {
